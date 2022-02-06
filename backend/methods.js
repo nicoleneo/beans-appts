@@ -1,7 +1,12 @@
 let allTherapistsData = require("./allTherapists.json");
+let allSpecialitiesData = require("./allSpecialities.json");
+
 const { v4: uuidv4 } = require('uuid');
 
-
+const allSpecialities = () => {
+    console.log("all specialities");
+	return allSpecialitiesData;
+};
 const allTherapists = () => {
     console.log("all therapists");
 	return allTherapistsData;
@@ -35,6 +40,7 @@ const therapistsWithSpeciality = (speciality, matchParent = false) => {
 	return therapists;
 };
 
+exports.allSpecialities = allSpecialities;
 exports.allTherapists = allTherapists;
 exports.therapistsWithSpeciality = therapistsWithSpeciality;
 exports.addTherapist = addTherapist;
