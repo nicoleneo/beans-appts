@@ -24,7 +24,7 @@ export default new Vuex.Store({
 		},
 		deleteTherapist(state, id) {
 			const therapistsData = state.therapistsData.filter(
-				(therapist) => therapist.id !== id
+				(therapist) => therapist._id !== id
 			);
 			Vue.set(state, "therapistsData", [...therapistsData]);
 		},

@@ -9,12 +9,17 @@ services:
     working_dir: /srv/app
     #command: "npm run dev"
     command: tail -f /dev/null
-    expose: 
+    expose:
       - "3000"
     ports:
       - "3000:3000"
+    environment:
+      MONGODB_URL: mongodb://mongo:27017
+      MONGO_USER: root
+      MONGO_PASSWORD: example
     tty: true
     stdin_open: true
+    depends_on: ["mongo"]
 
   frontend:
     image: node:16-alpine
@@ -23,10 +28,29 @@ services:
     working_dir: /srv/app
     #command: "npm run serve"
     command: tail -f /dev/null
-    expose: 
+    expose:
       - "8080"
     ports:
       - "8080:8080"
     tty: true
     stdin_open: true
     depends_on: ["backend"]
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    depends_on: ["mongo"]
+

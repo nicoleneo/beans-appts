@@ -1,4 +1,6 @@
 const methods = require("../methods");
+const Speciality = require("../models/Speciality");
+const Therapist = require("../models/Therapist");
 
 const root = {
 	allTherapists: () => {
@@ -9,15 +11,16 @@ const root = {
 		}));
 		return therapists;
 	},
-	allSpecialities: () => {
-		return methods.allSpecialities();
+	allSpecialities: async () => {
+		const specialities = await Speciality.find();
+		return specialities;
 	},
-	createTherapist: (args) => {
-		//const { therapist } = args;
+	createTherapist: async (args) => {
+		const { therapist } = args;
 		console.log(args);
-		return { name: "name" };
-		//console.log(therapist);
-		//return methods.addTherapist(therapist);
+		const newTherapist = new Therapist({name: therapist.name});
+		await newTherapist.save();
+		return newTherapist;
 	},
 };
 
