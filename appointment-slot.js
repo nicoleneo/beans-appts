@@ -18,12 +18,16 @@ const specialities = () => {
     }
     const lines = data.split("\n");
     let parentCategory = "";
-    for (let line in lines) {
-      const speciality = line.trim();
+    let prevSpeciality = null;
+    for (let lineNo in lines) {
+      let speciality = lines[lineNo].trim();
       let isChild = false;
       if (speciality.startsWith("-")) {
-        parentCategory = speciality;
+        speciality =  speciality.replace("-", "").trim();
+        parentCategory = prevSpeciality;
         isChild = true;
+      } else {
+        prevSpeciality = speciality;
       }
       const specialityObj = {
         name: speciality,
