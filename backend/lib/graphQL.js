@@ -13,7 +13,8 @@ const schema = buildSchema(`
   },
   type AppointmentSlot {
     _id: String
-    time: String
+    timeStart: String
+    timeEnd: String
     therapist: Therapist
     bookedBy: String
     bookedTime: String

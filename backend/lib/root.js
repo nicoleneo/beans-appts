@@ -20,19 +20,31 @@ const root = {
 		} = args;
 		console.log(args);
 		const newTherapist = new Therapist({ name, specialities });
-		await newTherapist.save();
-		return newTherapist;
+		return newTherapist
+			.save()
+			.then((newTherapist) =>
+				newTherapist.populate("specialities")
+			);
 	},
 	searchAppointmentSlots: async (args) => {
 		const {
 			criteria: { startDate, endDate, specialities },
 		} = args;
 		console.log(args);
-		const therapistIds = await Therapist.find({
-			specialities: { $in: specialities },
-		}, '_id');
+		const therapistIds = await Therapist.find(
+			{
+				specialities: { $in: specialities },
+			},
+			"_id"
+		);
+		const startOfDayStartDate = moment(startDate).startOf("day");
+		const endofDayEndDate = moment(endDate).endOf("day");
 		const appointmentSlots = await AppointmentSlot.find({
 			therapist: { $in: therapistIds },
+			timeStart: {
+				$gte: startOfDayStartDate,
+				$lte: endofDayEndDate,
+			},
 		});
 		return appointmentSlots;
 	},

@@ -4,7 +4,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const appointmentSlotSchema
  = new mongoose.Schema({
-	time: String,
+	timeStart: String,
+	timeEnd: String,
 	therapist: { type: ObjectId, ref: "Therapist" },
 	bookedBy: String,
 	bookedTime: String,

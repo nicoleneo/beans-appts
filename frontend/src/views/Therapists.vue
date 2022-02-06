@@ -13,7 +13,8 @@
             <Therapist
               v-for="therapist in allTherapists"
               :therapist="therapist"
-              :key="therapist.name"
+              :key="therapist._id"
+              class="ma-4"
             />
           </v-col>
         </v-row>
@@ -21,7 +22,7 @@
       </v-col>
       <v-col cols="12" sm="6" md="8" class="pa-6">
         <h1>Create Therapist</h1>
-        <form @submit.prevent="submit">
+        <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -40,10 +41,10 @@
             multiple
             required
           ></v-select>
-          <v-btn @click="fakeName"> fake name </v-btn>
+          <v-btn class="mr-4" @click="fakeName"> fake name </v-btn>
           <v-btn class="mr-4" @click="submit"> submit </v-btn>
           <v-btn @click="reset"> clear </v-btn>
-        </form>
+        </v-form>
       </v-col>
     </v-row>
   </v-container>
@@ -54,8 +55,6 @@ import { mapState } from "vuex";
 import { faker } from "@faker-js/faker";
 
 import Therapist from "../components/Therapist.vue";
-import createTherapist from "../queries/createTherapist";
-import TherapistsQuery from "../queries/therapistsQuery";
 
 export default {
   name: "Therapists",
@@ -85,21 +84,14 @@ export default {
       this.name = generatedName;
     },
     async submit() {
-      console.log(this.name);
-      console.log(this.selectedSpecialities);
       const variables = {
         therapist: {
           name: this.name,
           specialities: this.selectedSpecialities,
         },
       };
-      const createdTherapist = await this.$apollo.mutate({
-        mutation: createTherapist,
-        variables,
-      });
-      this.$store.commit("therapist", createdTherapist.data.createTherapist);
-      const response = await this.$apollo.query(TherapistsQuery);
-      this.$store.commit("therapistsData", response.data.allTherapists);
+      this.$store.dispatch("createTherapist", variables);
+      this.reset();
     },
     validate() {
       this.$refs.form.validate();
