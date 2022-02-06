@@ -1,0 +1,27 @@
+{
+  "name": "beans-appts",
+  "version": "1.0.0",
+  "description": "Therapy appointment booking",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicoleneo/beans-appts.git"
+  },
+  "author": "Nicole Neo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicoleneo/beans-appts/issues"
+  },
+  "homepage": "https://github.com/nicoleneo/beans-appts#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
+    "jest": "^27.5.0"
+  }
+}

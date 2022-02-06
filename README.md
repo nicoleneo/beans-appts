@@ -21,3 +21,9 @@ The booking seeder books 20% of the available slots in the next 3 months
 Initially seed therapists and specialities
 run book slots script a few times to randomly book slots
 ability to book remaining slots
+
+
+## Docker
+```
+docker run -it -v `pwd`:/srv/app -p 3000:3000 -w /srv/app node:16-alpine /bin/ash 
+```

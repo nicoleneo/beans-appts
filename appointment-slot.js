@@ -1,16 +1,13 @@
 "use strict";
-const faker = require("@faker-js/faker");
+const faker = require("@faker-js/faker").faker;
 const moment = require("moment");
-const fs = require("fs");
+const fs = require("fs/promises");
 
-const specialities = () => {
-	const specialities = [];
+const specialities = async () => {
+	let allSpecialities = [];
 	const specialitiesFile = __dirname + "/therapy_categories.txt";
-	fs.readFile(specialitiesFile, "utf8", (err, data) => {
-		if (err) {
-			console.error(err);
-			return;
-		}
+	try {
+		const data = await fs.readFile(specialitiesFile, "utf8");
 		const lines = data.split("\n");
 		let parentCategory = "";
 		let prevSpeciality = null;
@@ -30,14 +27,21 @@ const specialities = () => {
 			if (isChild) {
 				specialityObj.parent = parentCategory;
 			}
-			specialities.push(specialityObj);
+
+			allSpecialities.push(specialityObj);
 		}
-	});
-	return specialities;
+		let allSpecialitiesData = JSON.stringify(allSpecialities);
+		fs.writeFileSync("allSpecialities.json", allSpecialitiesData);
+		return allSpecialities;
+	} catch (error) {
+		console.error(err);
+		return;
+	}
 };
 
-const randomSpecialities = (specialities) => {
-	const selectedSpecialities = faker.random.arrayElements(specialities, 4);
+const randomSpecialities = (allSpecialities) => {
+	const selectedSpecialities = faker.random.arrayElements(allSpecialities, 4);
+	console.log(selectedSpecialities);
 	return selectedSpecialities;
 };
 
@@ -49,18 +53,21 @@ const generateDates = (qIds) => {
 	console.log(futureDates);
 };
 
-const generateTherapists = () => {
-	const allSpecialities = specialities();
+const generateTherapists = async () => {
+	const allSpecialities = await specialities();
 	const NUM_THERAPISTS = 10;
 	const allTherapists = [];
 	for (let i = 0; i < NUM_THERAPISTS; i++) {
 		const therapistName = faker.name.findName();
-		const therapistSpecialities = randomSpecialities(specialities);
+		const therapistSpecialities = randomSpecialities(allSpecialities);
 		const therapist = { therapistName, therapistSpecialities };
 		allTherapists.push(therapist);
 	}
 	console.log(allTherapists);
+  let allTherapistsData = JSON.stringify(allTherapists);
+  fs.writeFileSync("allTherapists.json", allTherapistsData);
 	return allTherapists;
 };
 
 generateTherapists();
+//const allSpecialities = specialities();
