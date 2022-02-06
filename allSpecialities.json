@@ -1,0 +1,350 @@
+[
+  {
+    "name": "Abortion"
+  },
+  {
+    "name": "Abuse"
+  },
+  {
+    "name": "Domestic violence",
+    "parent": "Abuse"
+  },
+  {
+    "name": "Emotional abuse",
+    "parent": "Abuse"
+  },
+  {
+    "name": "Physical abuse",
+    "parent": "Abuse"
+  },
+  {
+    "name": "Sexual abuse",
+    "parent": "Abuse"
+  },
+  {
+    "name": "Addiction(s)"
+  },
+  {
+    "name": "Alcoholism",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Drug addiction",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Gambling",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Internet addiction",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Sex addiction",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Smoking",
+    "parent": "Addiction(s)"
+  },
+  {
+    "name": "Adoption"
+  },
+  {
+    "name": "Anger management"
+  },
+  {
+    "name": "Anxiety"
+  },
+  {
+    "name": "Generalised anxiety disorder",
+    "parent": "Anxiety"
+  },
+  {
+    "name": "Panic attacks",
+    "parent": "Anxiety"
+  },
+  {
+    "name": "Phobias",
+    "parent": "Anxiety"
+  },
+  {
+    "name": "Social anxiety",
+    "parent": "Anxiety"
+  },
+  {
+    "name": "Attachment disorder"
+  },
+  {
+    "name": "Bereavement"
+  },
+  {
+    "name": "Body dysmorphic disorder"
+  },
+  {
+    "name": "Bullying"
+  },
+  {
+    "name": "Cancer"
+  },
+  {
+    "name": "Career counselling"
+  },
+  {
+    "name": "Carer support"
+  },
+  {
+    "name": "Young carers",
+    "parent": "Carer support"
+  },
+  {
+    "name": "Child counselling"
+  },
+  {
+    "name": "Attachment disorder in children",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Behaviour problems",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Childhood bereavement",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Childhood bullying",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Children’s learning difficulties",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Depression and anxiety in children",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Separation anxiety",
+    "parent": "Child counselling"
+  },
+  {
+    "name": "Chronic fatigue syndrome/ME"
+  },
+  {
+    "name": "Dementia"
+  },
+  {
+    "name": "Depression"
+  },
+  {
+    "name": "Bipolar disorder",
+    "parent": "Depression"
+  },
+  {
+    "name": "Feeling sad",
+    "parent": "Depression"
+  },
+  {
+    "name": "Postnatal depression",
+    "parent": "Depression"
+  },
+  {
+    "name": "Seasonal affective disorder (SAD)",
+    "parent": "Depression"
+  },
+  {
+    "name": "Disabilities"
+  },
+  {
+    "name": "Discrimination"
+  },
+  {
+    "name": "Dissociation"
+  },
+  {
+    "name": "Eating disorders"
+  },
+  {
+    "name": "Anorexia nervosa",
+    "parent": "Eating disorders"
+  },
+  {
+    "name": "Binge-eating disorder",
+    "parent": "Eating disorders"
+  },
+  {
+    "name": "Bulimia nervosa",
+    "parent": "Eating disorders"
+  },
+  {
+    "name": "Gender dysphoria"
+  },
+  {
+    "name": "Hearing voices"
+  },
+  {
+    "name": "High sensitivity"
+  },
+  {
+    "name": "HIV/AIDS"
+  },
+  {
+    "name": "Infertility"
+  },
+  {
+    "name": "Learning difficulties"
+  },
+  {
+    "name": "LGBTQ+ counselling"
+  },
+  {
+    "name": "Loneliness"
+  },
+  {
+    "name": "Low self-confidence"
+  },
+  {
+    "name": "Low self-esteem"
+  },
+  {
+    "name": "Miscarriage"
+  },
+  {
+    "name": "Neurodiversity"
+  },
+  {
+    "name": "ADHD",
+    "parent": "Neurodiversity"
+  },
+  {
+    "name": "Asperger's syndrome",
+    "parent": "Neurodiversity"
+  },
+  {
+    "name": "Autism",
+    "parent": "Neurodiversity"
+  },
+  {
+    "name": "Tourette's syndrome",
+    "parent": "Neurodiversity"
+  },
+  {
+    "name": "Obsessive compulsive disorder"
+  },
+  {
+    "name": "Health anxiety",
+    "parent": "Obsessive compulsive disorder"
+  },
+  {
+    "name": "Hoarding",
+    "parent": "Obsessive compulsive disorder"
+  },
+  {
+    "name": "Paranoia"
+  },
+  {
+    "name": "Passive aggressive behaviour"
+  },
+  {
+    "name": "Personality disorders"
+  },
+  {
+    "name": "Antisocial personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Avoidant personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Borderline personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Dependent personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Histrionic personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Narcissistic personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Obsessive-compulsive personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Paranoid personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Schizoid personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Schizotypal personality disorder",
+    "parent": "Personality disorders"
+  },
+  {
+    "name": "Post-traumatic stress disorder"
+  },
+  {
+    "name": "Pregnancy and birth"
+  },
+  {
+    "name": "Psychosis"
+  },
+  {
+    "name": "Racism"
+  },
+  {
+    "name": "Redundancy"
+  },
+  {
+    "name": "Relationship problems"
+  },
+  {
+    "name": "Affairs and betrayals",
+    "parent": "Relationship problems"
+  },
+  {
+    "name": "Family issues",
+    "parent": "Relationship problems"
+  },
+  {
+    "name": "Separation and divorce",
+    "parent": "Relationship problems"
+  },
+  {
+    "name": "Schizophrenia"
+  },
+  {
+    "name": "Self-harm"
+  },
+  {
+    "name": "Sex problems"
+  },
+  {
+    "name": "Spirituality"
+  },
+  {
+    "name": "Stress"
+  },
+  {
+    "name": "Suicidal thoughts"
+  },
+  {
+    "name": "Trauma"
+  },
+  {
+    "name": "Trichotillomania"
+  },
+  {
+    "name": "Work-related stress"
+  }
+]

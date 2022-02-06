@@ -1,0 +1,192 @@
+[
+  {
+    "therapistName": "Verna Kunze",
+    "therapistSpecialities": [
+      {
+        "name": "Panic attacks",
+        "parent": "Anxiety"
+      },
+      {
+        "name": "Bulimia nervosa",
+        "parent": "Eating disorders"
+      },
+      {
+        "name": "Cancer"
+      },
+      {
+        "name": "Schizotypal personality disorder",
+        "parent": "Personality disorders"
+      }
+    ]
+  },
+  {
+    "therapistName": "Horace Hamill",
+    "therapistSpecialities": [
+      {
+        "name": "Bullying"
+      },
+      {
+        "name": "LGBTQ+ counselling"
+      },
+      {
+        "name": "Infertility"
+      },
+      {
+        "name": "Post-traumatic stress disorder"
+      }
+    ]
+  },
+  {
+    "therapistName": "Clinton Pollich",
+    "therapistSpecialities": [
+      {
+        "name": "Depression and anxiety in children",
+        "parent": "Child counselling"
+      },
+      {
+        "name": "Affairs and betrayals",
+        "parent": "Relationship problems"
+      },
+      {
+        "name": "Bulimia nervosa",
+        "parent": "Eating disorders"
+      },
+      {
+        "name": "Low self-esteem"
+      }
+    ]
+  },
+  {
+    "therapistName": "Toni Hyatt",
+    "therapistSpecialities": [
+      {
+        "name": "Abuse"
+      },
+      {
+        "name": "Tourette's syndrome",
+        "parent": "Neurodiversity"
+      },
+      {
+        "name": "Bullying"
+      },
+      {
+        "name": "Infertility"
+      }
+    ]
+  },
+  {
+    "therapistName": "Natasha King",
+    "therapistSpecialities": [
+      {
+        "name": "Anger management"
+      },
+      {
+        "name": "Anxiety"
+      },
+      {
+        "name": "Stress"
+      },
+      {
+        "name": "LGBTQ+ counselling"
+      }
+    ]
+  },
+  {
+    "therapistName": "Sarah Bahringer",
+    "therapistSpecialities": [
+      {
+        "name": "Feeling sad",
+        "parent": "Depression"
+      },
+      {
+        "name": "High sensitivity"
+      },
+      {
+        "name": "Attachment disorder"
+      },
+      {
+        "name": "Behaviour problems",
+        "parent": "Child counselling"
+      }
+    ]
+  },
+  {
+    "therapistName": "Ed Kirlin I",
+    "therapistSpecialities": [
+      {
+        "name": "Abortion"
+      },
+      {
+        "name": "Generalised anxiety disorder",
+        "parent": "Anxiety"
+      },
+      {
+        "name": "Discrimination"
+      },
+      {
+        "name": "Social anxiety",
+        "parent": "Anxiety"
+      }
+    ]
+  },
+  {
+    "therapistName": "Christina Runolfsson",
+    "therapistSpecialities": [
+      {
+        "name": "Bullying"
+      },
+      {
+        "name": "Abortion"
+      },
+      {
+        "name": "Histrionic personality disorder",
+        "parent": "Personality disorders"
+      },
+      {
+        "name": "Bipolar disorder",
+        "parent": "Depression"
+      }
+    ]
+  },
+  {
+    "therapistName": "Taylor Beer II",
+    "therapistSpecialities": [
+      {
+        "name": "Domestic violence",
+        "parent": "Abuse"
+      },
+      {
+        "name": "Bipolar disorder",
+        "parent": "Depression"
+      },
+      {
+        "name": "Separation anxiety",
+        "parent": "Child counselling"
+      },
+      {
+        "name": "Narcissistic personality disorder",
+        "parent": "Personality disorders"
+      }
+    ]
+  },
+  {
+    "therapistName": "William Pacocha MD",
+    "therapistSpecialities": [
+      {
+        "name": "Internet addiction",
+        "parent": "Addiction(s)"
+      },
+      {
+        "name": "ADHD",
+        "parent": "Neurodiversity"
+      },
+      {
+        "name": "Psychosis"
+      },
+      {
+        "name": "Dependent personality disorder",
+        "parent": "Personality disorders"
+      }
+    ]
+  }
+]
