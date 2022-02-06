@@ -1,15 +1,18 @@
 const express = require("express");
+const { graphqlHTTP } = require("express-graphql");
 const app = express();
 const port = process.env.PORT || 3000;
+const { schema } = require("./lib/graphQL");
+const { root } = require('./lib/root');
 
-app.get(["/", "/:name"], (req, res) => {
-  greeting = "<h1>Hello From Node on Fly!</h1>";
-  name = req.params["name"];
-  if (name) {
-    res.send(greeting + "</br>and hello to " + name);
-  } else {
-    res.send(greeting);
-  }
-});
 
-app.listen(port, () => console.log(`HelloNode app listening on port ${port}!`));
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+  })
+);
+
+app.listen(port, () => console.log(`GraphQL server running on port ${port}!`));
