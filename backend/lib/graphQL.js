@@ -13,13 +13,14 @@ const schema = buildSchema(`
   },
   input TherapistInput {
     name: String
+    specialities: [String]
   },
   type Query {
     allSpecialities: [Speciality],
     allTherapists: [Therapist],
   },
   type Mutation {
-    createTherapist(therapist: TherapistInput!): String
+    createTherapist(therapist: TherapistInput!): Therapist
   }
 `);
 

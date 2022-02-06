@@ -1,6 +1,6 @@
 <template>
   <v-card v-if="therapist" class="pa-4">
-    <p>{{ therapist.name }}</p>
+    <h2>{{ therapist.name }}</h2>
     <h3>Specialities</h3>
     <v-spacer></v-spacer>
     <v-container fluid grid-list-sm>
@@ -10,9 +10,7 @@
           :key="speciality.name"
           xs6
         >
-          <v-btn elevation="2" class="ma-2 pa-2" color="primary">
-            {{ speciality.name }}
-          </v-btn></v-flex
+            {{ speciality.name }}</v-flex
         >
       </v-layout></v-container
     >

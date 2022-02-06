@@ -8,8 +8,14 @@
 
       <v-spacer></v-spacer>
       <ol>
-        <li><router-link to="/" class="white--text">Specialities</router-link></li>
-        <li><router-link to="/therapists" class="white--text">Therapists</router-link></li>
+        <li>
+          <router-link to="/" class="white--text">Specialities</router-link>
+        </li>
+        <li>
+          <router-link to="/therapists" class="white--text"
+            >Therapists</router-link
+          >
+        </li>
       </ol>
     </v-app-bar>
 
@@ -20,11 +26,24 @@
 </template>
 
 <script>
+import TherapistsQuery from './queries/therapistsQuery';
+import SpecialitiesQuery from './queries/specialitiesQuery';
+
+
 export default {
   name: "App",
 
   components: {},
-
+  async beforeMount() {
+    try {
+      let response = await this.$apollo.query(SpecialitiesQuery);
+      this.$store.commit("specialitiesData", response.data.allSpecialities);
+      response = await this.$apollo.query(TherapistsQuery);
+      this.$store.commit("therapistsData", response.data.allTherapists);
+    } catch (error) {
+      console.log(error);
+    }
+  },
   data: () => ({
     //
   }),

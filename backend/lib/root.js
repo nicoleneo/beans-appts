@@ -13,8 +13,11 @@ const root = {
 		return methods.allSpecialities();
 	},
 	createTherapist: (args) => {
-		const { therapist } = args;
-		return methods.addTherapist(therapist);
+		//const { therapist } = args;
+		console.log(args);
+		return { name: "name" };
+		//console.log(therapist);
+		//return methods.addTherapist(therapist);
 	},
 };
 
