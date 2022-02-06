@@ -7,4 +7,4 @@ const therapistSchema = new mongoose.Schema({
 	specialities: [{ type: ObjectId, ref: "Speciality" }],
 });
 
-module.exports = mongoose.model("Speciality", therapistSchema);
+module.exports = mongoose.model("Therapist", therapistSchema);

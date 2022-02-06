@@ -10,7 +10,13 @@ const { root } = require("./lib/root");
 
 // Connect to DB
 mongoose
-	.connect(`${process.env.MONGODB_URL}/beans-appts`)
+	.connect(`${process.env.MONGODB_URL}/beans-appts`, {
+		user: process.env.MONGO_USER,
+		pass: process.env.MONGO_PASSWORD,
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		authSource: "admin",
+	})
 	.then(() => console.log("MongoDB connected..."))
 	.catch((err) => console.log(err));
 

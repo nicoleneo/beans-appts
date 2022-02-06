@@ -3,13 +3,13 @@ import gql from "graphql-tag";
 const createTherapist = gql`
 	mutation createTherapist($therapist: TherapistInput!) {
 		createTherapist(therapist: $therapist) {
-			id
+			_id
 			name
 			specialities {
-				id
+				_id
 				name
 				parent {
-					id
+					_id
 					name
 				}
 			}

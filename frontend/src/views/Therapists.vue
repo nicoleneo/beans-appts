@@ -5,7 +5,7 @@
       <v-btn @click="overlay = false"> Close </v-btn>
     </v-overlay>
     <v-row no-gutters>
-      <v-col cols="12" sm="6" md="4">
+      <v-col cols="12" sm="6" md="4" class="pa-6">
         <v-row>
           <v-col cols="12">
             <h1>Therapists</h1>
@@ -19,7 +19,7 @@
         </v-row>
         <v-row><v-col cols="12"> </v-col></v-row>
       </v-col>
-      <v-col cols="12" sm="6" md="8">
+      <v-col cols="12" sm="6" md="8" class="pa-6">
         <h1>Create Therapist</h1>
         <form @submit.prevent="submit">
           <v-text-field
@@ -33,14 +33,14 @@
             v-model="selectedSpecialities"
             :items="specialities"
             :item-text="formatSpeciality"
-            item-value="name"
+            item-value="_id"
             :rules="[(v) => !!v || 'At least one speciality is required']"
             label="Select specialities"
             data-vv-name="select"
             multiple
             required
           ></v-select>
-
+          <v-btn @click="fakeName"> fake name </v-btn>
           <v-btn class="mr-4" @click="submit"> submit </v-btn>
           <v-btn @click="reset"> clear </v-btn>
         </form>
@@ -51,8 +51,11 @@
 
 <script>
 import { mapState } from "vuex";
+import { faker } from "@faker-js/faker";
+
 import Therapist from "../components/Therapist.vue";
 import createTherapist from "../queries/createTherapist";
+import TherapistsQuery from "../queries/therapistsQuery";
 
 export default {
   name: "Therapists",
@@ -71,12 +74,16 @@ export default {
     name: "",
     nameRules: [
       (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+      (v) => (v && v.length >= 3) || "Name must be more than 3 characters",
     ],
     selectedSpecialities: null,
   }),
   methods: {
     formatSpeciality: (item) => `${item.parent ? "\t – " : ""}${item.name}`,
+    fakeName() {
+      const generatedName = faker.name.findName();
+      this.name = generatedName;
+    },
     async submit() {
       console.log(this.name);
       console.log(this.selectedSpecialities);
@@ -91,6 +98,8 @@ export default {
         variables,
       });
       this.$store.commit("therapist", createdTherapist.data.createTherapist);
+      const response = await this.$apollo.query(TherapistsQuery);
+      this.$store.commit("therapistsData", response.data.allTherapists);
     },
     validate() {
       this.$refs.form.validate();
