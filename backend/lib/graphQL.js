@@ -28,6 +28,16 @@ const schema = buildSchema(`
     endDate: String
     specialities: [String]
   }
+  input AppointmentSlotInput {
+    timeStart: String
+    timeEnd: String
+    therapistId: String
+  }
+  input BookingInput {
+    appointmentSlotId: String
+    bookedBy: String
+    bookedTime: String
+  }
   type Query {
     allSpecialities: [Speciality],
     allTherapists: [Therapist],
@@ -35,6 +45,8 @@ const schema = buildSchema(`
   },
   type Mutation {
     createTherapist(therapist: TherapistInput!): Therapist
+    createAppointmentSlot(appointmentSlot: AppointmentSlotInput!): AppointmentSlot
+    bookAppointmentSlot(booking: BookingInput): AppointmentSlot
   }
 `);
 

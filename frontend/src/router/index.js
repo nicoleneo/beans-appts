@@ -19,6 +19,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Therapists.vue'),
   },
+  {
+    path: '/therapist-appointments',
+    name: 'Therapist define appointment slots',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/TherapistAppointments.vue'),
+  },
 ];
 
 const router = new VueRouter({

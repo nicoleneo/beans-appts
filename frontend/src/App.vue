@@ -16,6 +16,11 @@
             >Therapists</router-link
           >
         </li>
+        <li>
+          <router-link to="/therapist-appointments" class="white--text"
+            >Therapists create appointments</router-link
+          >
+        </li>
       </ol>
     </v-app-bar>
 

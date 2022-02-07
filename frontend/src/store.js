@@ -5,10 +5,14 @@ import TherapistsQuery from "./queries/therapistsQuery";
 import SpecialitiesQuery from "./queries/specialitiesQuery";
 import AppointmentSlotsQuery from "./queries/appointmentSlotsQuery";
 import createTherapist from "./queries/createTherapist";
+import createAppointmentSlotMutation from "./queries/createAppointmentSlotMutation";
 
 Vue.use(Vuex);
 
 export const mutations = {
+	appointmentSlotsData(state, data) {
+		Vue.set(state, "appointmentSlotsData", [...data]);
+	},
 	specialitiesData(state, data) {
 		Vue.set(state, "specialitiesData", [...data]);
 	},
@@ -23,6 +27,9 @@ export const mutations = {
 			(therapist) => therapist._id !== id
 		);
 		Vue.set(state, "therapistsData", [...therapistsData]);
+	},
+	appointmentSlot(state, data) {
+		state.appointmentSlot = data;
 	},
 };
 export const actions = {
@@ -68,6 +75,16 @@ export const actions = {
 		});
 		commit("appointmentSlotsData", response.data.searchAppointmentSlots);
 	},
+	async createAppointmentSlot({ commit }, variables) {
+		const createdAppointmentSlot = await apolloClient.mutate({
+			mutation: createAppointmentSlotMutation,
+			variables,
+		});
+		commit(
+			"appointmentSlot",
+			createdAppointmentSlot.data.createAppointmentSlot
+		);
+	},
 };
 
 export default new Vuex.Store({
@@ -79,6 +96,10 @@ export default new Vuex.Store({
 			name: "",
 			specialities: [],
 		},
+		appointmentSlot: {
+			timeStart: "",
+			timeEnd: ""
+		}
 	},
 	mutations,
 	actions,

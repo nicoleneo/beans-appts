@@ -22,9 +22,27 @@ const root = {
 		const newTherapist = new Therapist({ name, specialities });
 		return newTherapist
 			.save()
-			.then((newTherapist) =>
-				newTherapist.populate("specialities")
-			);
+			.then((newTherapist) => newTherapist.populate("specialities"));
+	},
+	createAppointmentSlot: async (args) => {
+		const {
+			appointmentSlot: { timeStart, timeEnd, therapistId },
+		} = args;
+		const newAppointmentSlot = new AppointmentSlot({ timeStart, timeEnd, therapist: therapistId });
+		return newAppointmentSlot
+			.save()
+			.then((newAppointmentSlot) => newAppointmentSlot.populate("therapist"));
+	},
+	bookAppointmentSlot: async (args) => {
+		const {
+			booking: { appointmentSlotId, bookedBy, bookedTime },
+		} = args;
+		const appointmentSlot = AppointmentSlot.findById(appointmentSlotId);
+		appointmentSlot.bookedBy = bookedBy;
+		appointmentSlot.bookedTime = bookedTime;
+		return appointmentSlot
+			.save()
+			.then((newAppointmentSlot) => newAppointmentSlot.populate("therapist"));
 	},
 	searchAppointmentSlots: async (args) => {
 		const {
