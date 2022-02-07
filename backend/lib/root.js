@@ -2,6 +2,7 @@ const methods = require("../methods");
 const AppointmentSlot = require("../models/AppointmentSlot");
 const Speciality = require("../models/Speciality");
 const Therapist = require("../models/Therapist");
+const moment = require("moment");
 
 const root = {
 	allTherapists: async () => {
@@ -18,7 +19,6 @@ const root = {
 		const {
 			therapist: { name, specialities },
 		} = args;
-		console.log(args);
 		const newTherapist = new Therapist({ name, specialities });
 		return newTherapist
 			.save()

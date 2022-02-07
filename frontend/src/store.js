@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import apolloClient from "./utils/graphql";
 import TherapistsQuery from "./queries/therapistsQuery";
 import SpecialitiesQuery from "./queries/specialitiesQuery";
+import AppointmentSlotsQuery from "./queries/appointmentSlotsQuery";
 import createTherapist from "./queries/createTherapist";
 
 Vue.use(Vuex);
@@ -59,10 +60,19 @@ export const actions = {
 		});
 		commit("therapist", createdTherapist.data.createTherapist);
 	},
+	async searchAppointmentSlots({ commit }, variables) {
+		console.log("search appointment slots");
+		const response = await apolloClient.query({
+			query: AppointmentSlotsQuery,
+			variables,
+		});
+		commit("appointmentSlotsData", response.data.searchAppointmentSlots);
+	},
 };
 
 export default new Vuex.Store({
 	state: {
+		appointmentSlotsData: [],
 		specialitiesData: [],
 		therapistsData: [],
 		therapist: {
