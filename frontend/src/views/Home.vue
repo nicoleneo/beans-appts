@@ -32,7 +32,7 @@
         <v-row><v-col cols="12"> </v-col></v-row>
       </v-col>
       <v-col cols="12" sm="6" md="8">
-        <v-btn
+        <v-card
           v-for="appointmentSlot in appointmentSlots"
           :key="appointmentSlot._id"
           elevation="2"
@@ -41,7 +41,7 @@
         >
           {{ appointmentSlot.date }} {{ appointmentSlot.timeStart }} -
           {{ appointmentSlot.timeEnd }}
-        </v-btn>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -110,10 +110,11 @@ export default {
   computed: {
     appointmentSlots: function () {
       const formattedAppointmentSlots = this.appointmentSlotsData.map((as) => {
+        console.log(as);
         const slot = {
-          startTime: moment(as.startTime).format(" H:mm A"),
-          endTime: moment(as.endTime).format(" H:mm A"),
-          date: moment(as.startTime).format("ddd D MMMM YYYY"),
+          timeStart: moment(as.timeStart).format(" H:mm A"),
+          timeEnd: moment(as.timeEnd).format(" H:mm A"),
+          date: moment(as.timeStart).format("ddd D MMMM YYYY"),
         };
         return slot;
       });
