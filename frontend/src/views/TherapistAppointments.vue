@@ -12,13 +12,74 @@
 
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-date-picker v-model="date" required></v-date-picker>
-              <v-time-picker
-                v-model="timeStart"
-                :allowed-minutes="allowedMinutes"
-                :allowed-hours="allowedHours"
-                class="mt-4"
-                format="24hr"
-              ></v-time-picker>
+              <v-dialog
+                ref="timeStartDialog"
+                v-model="timeStartModal"
+                :return-value.sync="timeStart"
+                persistent
+                width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="timeStart"
+                    label="Appointment start time"
+                    prepend-icon="mdi-clock-time-four-outline"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="timeStartModal"
+                  format="24hr"
+                  v-model="timeStart"
+                  :max="timeEnd"
+                  :allowed-minutes="allowedMinutes"
+                  :allowed-hours="allowedHours"
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="timeStartModal = false">
+                    Cancel
+                  </v-btn>
+                  <v-btn text color="primary" @click="$refs.timeStartDialog.save(timeStart)">
+                    OK
+                  </v-btn>
+                </v-time-picker>
+              </v-dialog>
+              <v-dialog
+                ref="timeEndDialog"
+                v-model="timeEndModal"
+                :return-value.sync="timeEnd"
+                persistent
+                width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="timeEnd"
+                    label="Appointment end time"
+                    prepend-icon="mdi-clock-time-four-outline"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="timeEndModal"
+                  format="24hr"
+                  v-model="timeEnd"
+                  :min="timeStart"
+                  :allowed-minutes="allowedMinutes"
+                  :allowed-hours="allowedHours"
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="timeEndModal = false">
+                    Cancel
+                  </v-btn>
+                  <v-btn text color="primary" @click="$refs.timeEndDialog.save(timeEnd)">
+                    OK
+                  </v-btn>
+                </v-time-picker>
+              </v-dialog>
               <v-select
                 v-model="selectedTherapist"
                 :items="allTherapists"
@@ -64,31 +125,37 @@ export default {
     absolute: true,
     overlay: false,
     overlayMessage: null,
+    timeStartModal: false,
+    timeEndModal: false,
 
     // form
     valid: true,
     selectedTherapist: null,
     date: null,
     timeStart: null,
+    timeEnd: null,
   }),
   methods: {
     allowedHours: (v) => v >= 9 && v <= 18,
-    allowedMinutes: (v) => v  === 0,
+    allowedMinutes: (v) => v === 0,
     async submit() {
       console.log(this.date);
       console.log(this.timeStart);
-      let startTime = `${this.date} ${this.timeStart}`;
-      console.log(startTime);
-      /*
+      let timeStart = `${this.date} ${this.timeStart}`;
+      timeStart = moment(timeStart).format();
+      console.log(this.timeEnd);
+      let timeEnd = `${this.date} ${this.timeEnd}`;
+      timeEnd = moment(timeEnd).format();
+
       const variables = {
-        criteria: {
-          startDate: this.dates[0],
-          endDate: this.dates[1],
-          specialities: this.selectedSpecialities,
+        appointmentSlot: {
+          timeStart,
+          timeEnd,
+          therapistId: this.selectedTherapist,
         },
       };
-      this.$store.dispatch("searchAppointmentSlots", variables);
-      */
+      this.$store.dispatch("createAppointmentSlot", variables);
+
       this.reset();
     },
     validate() {
