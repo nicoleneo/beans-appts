@@ -28,7 +28,11 @@ const root = {
 		const {
 			appointmentSlot: { timeStart, timeEnd, therapistId },
 		} = args;
-		const newAppointmentSlot = new AppointmentSlot({ timeStart, timeEnd, therapist: therapistId });
+		const newAppointmentSlot = new AppointmentSlot({
+			timeStart: moment(timeStart).toISOString(),
+			timeEnd: moment(timeEnd).toISOString,
+			therapist: therapistId,
+		});
 		return newAppointmentSlot
 			.save()
 			.then((newAppointmentSlot) => newAppointmentSlot.populate("therapist"));
@@ -49,14 +53,16 @@ const root = {
 			criteria: { startDate, endDate, specialities },
 		} = args;
 		console.log(args);
-		const therapistIds = await Therapist.find(
+		let therapistIds = await Therapist.find(
 			{
 				specialities: { $in: specialities },
 			},
 			"_id"
 		);
-		const startOfDayStartDate = moment(startDate).startOf("day");
-		const endofDayEndDate = moment(endDate).endOf("day");
+		console.log("therapists");
+		console.log(therapistIds);
+		const startOfDayStartDate = moment(startDate).startOf("day").toISOString();
+		const endofDayEndDate = moment(endDate).endOf("day").toISOString();
 		const appointmentSlots = await AppointmentSlot.find({
 			therapist: { $in: therapistIds },
 			timeStart: {
@@ -64,6 +70,7 @@ const root = {
 				$lte: endofDayEndDate,
 			},
 		});
+		console.log(appointmentSlots);
 		return appointmentSlots;
 	},
 };
