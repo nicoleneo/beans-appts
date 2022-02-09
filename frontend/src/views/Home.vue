@@ -37,10 +37,10 @@
           :key="appointmentSlot._id"
           elevation="2"
           class="ma-2 pa-2"
-          color="primary"
         >
           {{ appointmentSlot.date }} {{ appointmentSlot.timeStart }} -
           {{ appointmentSlot.timeEnd }}
+          <Therapist :therapist="appointmentSlot.therapist" />
         </v-card>
       </v-col>
     </v-row>
@@ -51,10 +51,13 @@
 import gql from "graphql-tag";
 import { mapState } from "vuex";
 import moment from "moment";
+import Therapist from "../components/Therapist.vue";
 
 export default {
   name: "Specialities",
-  //components: {},
+  components: {
+    Therapist,
+  },
   apollo: {
     allSpecialities: gql`
       query {
@@ -109,12 +112,19 @@ export default {
   },
   computed: {
     appointmentSlots: function () {
-      const formattedAppointmentSlots = this.appointmentSlotsData.map((as) => {
-        console.log(as);
+      let formattedAppointmentSlots = this.appointmentSlotsData;
+      formattedAppointmentSlots.sort(
+        (a, b) => moment(a.timeStart).valueOf() - moment(b.timeStart).valueOf()
+      );
+      console.log(formattedAppointmentSlots);
+      formattedAppointmentSlots = formattedAppointmentSlots.map((as) => {
         const slot = {
           timeStart: moment(as.timeStart).format(" H:mm A"),
           timeEnd: moment(as.timeEnd).format(" H:mm A"),
           date: moment(as.timeStart).format("ddd D MMMM YYYY"),
+          therapist: this.allTherapists.filter(
+            (t) => t._id == as.therapist._id
+          )[0],
         };
         return slot;
       });
@@ -123,6 +133,7 @@ export default {
     ...mapState({
       appointmentSlotsData: (state) => state.appointmentSlotsData,
       specialities: (state) => state.specialitiesData,
+      allTherapists: (state) => state.therapistsData,
     }),
   },
 };
