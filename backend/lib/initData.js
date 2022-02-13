@@ -4,7 +4,8 @@ const Speciality = require("../models/Speciality");
 let allSpecialitiesData = require("./allSpecialities.json");
 
 // Connect to DB
-mongoose
+const realDBConnect = () => {
+	mongoose
 	.connect(`${process.env.MONGODB_URL}/beans-appts`, {
 		user: process.env.MONGO_USER,
 		pass: process.env.MONGO_PASSWORD,
@@ -14,6 +15,21 @@ mongoose
 	})
 	.then(() => console.log("MongoDB connected..."))
 	.catch((err) => console.log(err));
+};
+
+const testDBConnect = () => {
+	mongoose
+	.connect(`${process.env.MONGODB_URL}/beans-appts-test`, {
+		user: process.env.MONGO_USER,
+		pass: process.env.MONGO_PASSWORD,
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+        authSource: 'admin',
+	})
+	.then(() => console.log("MongoDB connected to test..."))
+	.catch((err) => console.log(err));
+};
+
 
 const seedSpecialities = async () => {
 	for (let i in allSpecialitiesData) {
@@ -41,4 +57,7 @@ const seedSpecialities = async () => {
 	return allSpecialities;
 };
 
-seedSpecialities();
+
+exports.seedSpecialities = seedSpecialities;
+exports.testDBConnect = testDBConnect;
+

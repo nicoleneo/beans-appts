@@ -1,0 +1,530 @@
+[
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576c0" },
+		"name": "Abortion",
+		"__v": 0
+	},
+	{ "_id": { "$oid": "6200386fdef60311ec2576c3" }, "name": "Abuse", "__v": 0 },
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576c7" },
+		"name": "Domestic violence",
+		"parent": { "$oid": "6200386fdef60311ec2576c3" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576cb" },
+		"name": "Emotional abuse",
+		"parent": { "$oid": "6200386fdef60311ec2576c3" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576cf" },
+		"name": "Physical abuse",
+		"parent": { "$oid": "6200386fdef60311ec2576c3" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576d3" },
+		"name": "Sexual abuse",
+		"parent": { "$oid": "6200386fdef60311ec2576c3" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576d6" },
+		"name": "Addiction(s)",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576da" },
+		"name": "Alcoholism",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576de" },
+		"name": "Drug addiction",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576e2" },
+		"name": "Gambling",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576e6" },
+		"name": "Internet addiction",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576ea" },
+		"name": "Sex addiction",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576ee" },
+		"name": "Smoking",
+		"parent": { "$oid": "6200386fdef60311ec2576d6" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576f1" },
+		"name": "Adoption",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576f4" },
+		"name": "Anger management",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576f7" },
+		"name": "Anxiety",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576fb" },
+		"name": "Generalised anxiety disorder",
+		"parent": { "$oid": "6200386fdef60311ec2576f7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec2576ff" },
+		"name": "Panic attacks",
+		"parent": { "$oid": "6200386fdef60311ec2576f7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec257703" },
+		"name": "Phobias",
+		"parent": { "$oid": "6200386fdef60311ec2576f7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec257707" },
+		"name": "Social anxiety",
+		"parent": { "$oid": "6200386fdef60311ec2576f7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec25770a" },
+		"name": "Attachment disorder",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec25770d" },
+		"name": "Bereavement",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec257710" },
+		"name": "Body dysmorphic disorder",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec257713" },
+		"name": "Bullying",
+		"__v": 0
+	},
+	{ "_id": { "$oid": "6200386fdef60311ec257716" }, "name": "Cancer", "__v": 0 },
+	{
+		"_id": { "$oid": "6200386fdef60311ec257719" },
+		"name": "Career counselling",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "6200386fdef60311ec25771c" },
+		"name": "Carer support",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257720" },
+		"name": "Young carers",
+		"parent": { "$oid": "6200386fdef60311ec25771c" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257723" },
+		"name": "Child counselling",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257727" },
+		"name": "Attachment disorder in children",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25772b" },
+		"name": "Behaviour problems",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25772f" },
+		"name": "Childhood bereavement",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257733" },
+		"name": "Childhood bullying",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257737" },
+		"name": "Children’s learning difficulties",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25773b" },
+		"name": "Depression and anxiety in children",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25773f" },
+		"name": "Separation anxiety",
+		"parent": { "$oid": "62003870def60311ec257723" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257742" },
+		"name": "Chronic fatigue syndrome/ME",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257745" },
+		"name": "Dementia",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257748" },
+		"name": "Depression",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25774c" },
+		"name": "Bipolar disorder",
+		"parent": { "$oid": "62003870def60311ec257748" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257750" },
+		"name": "Feeling sad",
+		"parent": { "$oid": "62003870def60311ec257748" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257754" },
+		"name": "Postnatal depression",
+		"parent": { "$oid": "62003870def60311ec257748" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257758" },
+		"name": "Seasonal affective disorder (SAD)",
+		"parent": { "$oid": "62003870def60311ec257748" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25775b" },
+		"name": "Disabilities",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25775e" },
+		"name": "Discrimination",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257761" },
+		"name": "Dissociation",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257764" },
+		"name": "Eating disorders",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257768" },
+		"name": "Anorexia nervosa",
+		"parent": { "$oid": "62003870def60311ec257764" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25776c" },
+		"name": "Binge-eating disorder",
+		"parent": { "$oid": "62003870def60311ec257764" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257770" },
+		"name": "Bulimia nervosa",
+		"parent": { "$oid": "62003870def60311ec257764" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257773" },
+		"name": "Gender dysphoria",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257776" },
+		"name": "Hearing voices",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257779" },
+		"name": "High sensitivity",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25777c" },
+		"name": "HIV/AIDS",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25777f" },
+		"name": "Infertility",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257782" },
+		"name": "Learning difficulties",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257785" },
+		"name": "LGBTQ+ counselling",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257788" },
+		"name": "Loneliness",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25778b" },
+		"name": "Low self-confidence",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25778e" },
+		"name": "Low self-esteem",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257791" },
+		"name": "Miscarriage",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257794" },
+		"name": "Neurodiversity",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257798" },
+		"name": "ADHD",
+		"parent": { "$oid": "62003870def60311ec257794" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25779c" },
+		"name": "Asperger's syndrome",
+		"parent": { "$oid": "62003870def60311ec257794" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577a0" },
+		"name": "Autism",
+		"parent": { "$oid": "62003870def60311ec257794" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577a4" },
+		"name": "Tourette's syndrome",
+		"parent": { "$oid": "62003870def60311ec257794" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577a7" },
+		"name": "Obsessive compulsive disorder",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577ab" },
+		"name": "Health anxiety",
+		"parent": { "$oid": "62003870def60311ec2577a7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577af" },
+		"name": "Hoarding",
+		"parent": { "$oid": "62003870def60311ec2577a7" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577b2" },
+		"name": "Paranoia",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577b5" },
+		"name": "Passive aggressive behaviour",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577b8" },
+		"name": "Personality disorders",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577bc" },
+		"name": "Antisocial personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577c0" },
+		"name": "Avoidant personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577c4" },
+		"name": "Borderline personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577c8" },
+		"name": "Dependent personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577cc" },
+		"name": "Histrionic personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577d0" },
+		"name": "Narcissistic personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577d4" },
+		"name": "Obsessive-compulsive personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577d8" },
+		"name": "Paranoid personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577dc" },
+		"name": "Schizoid personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577e0" },
+		"name": "Schizotypal personality disorder",
+		"parent": { "$oid": "62003870def60311ec2577b8" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577e3" },
+		"name": "Post-traumatic stress disorder",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577e6" },
+		"name": "Pregnancy and birth",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577e9" },
+		"name": "Psychosis",
+		"__v": 0
+	},
+	{ "_id": { "$oid": "62003870def60311ec2577ec" }, "name": "Racism", "__v": 0 },
+	{
+		"_id": { "$oid": "62003870def60311ec2577ef" },
+		"name": "Redundancy",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577f2" },
+		"name": "Relationship problems",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577f6" },
+		"name": "Affairs and betrayals",
+		"parent": { "$oid": "62003870def60311ec2577f2" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577fa" },
+		"name": "Family issues",
+		"parent": { "$oid": "62003870def60311ec2577f2" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec2577fe" },
+		"name": "Separation and divorce",
+		"parent": { "$oid": "62003870def60311ec2577f2" },
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257801" },
+		"name": "Schizophrenia",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257804" },
+		"name": "Self-harm",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257807" },
+		"name": "Sex problems",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec25780a" },
+		"name": "Spirituality",
+		"__v": 0
+	},
+	{ "_id": { "$oid": "62003870def60311ec25780d" }, "name": "Stress", "__v": 0 },
+	{
+		"_id": { "$oid": "62003870def60311ec257810" },
+		"name": "Suicidal thoughts",
+		"__v": 0
+	},
+	{ "_id": { "$oid": "62003870def60311ec257813" }, "name": "Trauma", "__v": 0 },
+	{
+		"_id": { "$oid": "62003870def60311ec257816" },
+		"name": "Trichotillomania",
+		"__v": 0
+	},
+	{
+		"_id": { "$oid": "62003870def60311ec257819" },
+		"name": "Work-related stress",
+		"__v": 0
+	}
+]

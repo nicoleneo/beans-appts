@@ -116,7 +116,6 @@ export default {
       formattedAppointmentSlots.sort(
         (a, b) => moment(a.timeStart).valueOf() - moment(b.timeStart).valueOf()
       );
-      console.log(formattedAppointmentSlots);
       formattedAppointmentSlots = formattedAppointmentSlots.map((as) => {
         const slot = {
           timeStart: moment(as.timeStart).format(" H:mm A"),

@@ -27,3 +27,7 @@ ability to book remaining slots
 ```
 docker run -it -v `pwd`:/srv/app -p 3000:3000 -w /srv/app node:16-alpine /bin/ash 
 ```
+
+## External Mongo
+username: nicole
+password: 8fI25mj225wmmngG

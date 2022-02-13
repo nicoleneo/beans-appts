@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path')
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -8,6 +9,7 @@ const port = process.env.PORT || 3000;
 const { schema } = require("./lib/graphQL");
 const { root } = require("./lib/root");
 
+app.use('/frontend', express.static(path.join(__dirname, 'frontend')));
 // Connect to DB
 mongoose
 	.connect(`${process.env.MONGODB_URL}/beans-appts`, {

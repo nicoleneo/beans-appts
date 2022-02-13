@@ -1,4 +1,4 @@
-const methods = require("./methods");
+const methods = require("./methods.old");
 
 describe("therapists", () => {
 	test("allTherapists returns correct number", () => {

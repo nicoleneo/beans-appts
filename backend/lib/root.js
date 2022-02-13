@@ -1,4 +1,3 @@
-const methods = require("../methods");
 const AppointmentSlot = require("../models/AppointmentSlot");
 const Speciality = require("../models/Speciality");
 const Therapist = require("../models/Therapist");
