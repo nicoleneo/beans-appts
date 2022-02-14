@@ -24,10 +24,58 @@ ability to book remaining slots
 
 
 ## Docker
+MongoDB runs on port 27017. Mongo Express GUI runs on port 8081
+The frontend runs on port 8080
+The backend runs on port 3000
+
+
+### Front-end
+#### Development mode
 ```
-docker run -it -v `pwd`:/srv/app -p 3000:3000 -w /srv/app node:16-alpine /bin/ash 
+nicole@Nicoles-Air beans-appts % docker compose exec frontend /bin/ash
+/srv/app # npm run serve
+
+> app@0.1.0 serve
+> vue-cli-service serve
+```
+
+#### Building
+```
+nicole@Nicoles-Air beans-appts % docker compose exec frontend /bin/ash
+/srv/app # npm run build
+
+> app@0.1.0 build
+> vue-cli-service build
+⠸  Building for production...
+
+
+ DONE  Build complete. The dist directory is ready to be deployed.
+ INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+```
+
+After it's done, copy the contents of `/frontend/dist` to `/backend/frontend` to host the front-end.
+
+### Back-end
+#### Unit tests
+```
+nicole@Nicoles-Air beans-appts % docker-compose exec backend /bin/ash
+/srv/app # npm run test
+
+> beans-appts@1.0.0 test
+> jest
 ```
 
 ## External Mongo
+```
 username: nicole
 password: 8fI25mj225wmmngG
+address: mongodb+srv://cluster0.8wvuy.mongodb.net/beans-appts
+```
+IP limited to my machine and my server
+
+## Security
+API keys can be used for the website (limit the website API key to approved domains), and for therapists who want to integrate with their booking system.
+
+OAuth can be used to handle registration and roles assigned to the users to limit their scope of actions. Clients can only book/amend their appointments. Therapists can only create appointment slots and edit their profile.
+
+Therapists can use an API key and Zapier to sync their calendar availability and automatically create appointment slots. 

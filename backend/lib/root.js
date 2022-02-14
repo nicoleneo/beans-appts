@@ -29,7 +29,7 @@ const root = {
 		} = args;
 		const newAppointmentSlot = new AppointmentSlot({
 			timeStart: moment(timeStart).toISOString(),
-			timeEnd: moment(timeEnd).toISOString,
+			timeEnd: moment(timeEnd).toISOString(),
 			therapist: therapistId,
 		});
 		return newAppointmentSlot

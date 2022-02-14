@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Speciality = require("../models/Speciality");
+const Therapist = require("../models/Therapist");
 
 let allSpecialitiesData = require("./allSpecialities.json");
 
@@ -19,13 +20,16 @@ const realDBConnect = () => {
 
 const testDBConnect = async () => {
 	try {
-		const c = await mongoose.connect(`${process.env.MONGODB_URL}/beans-appts-test`, {
-			user: process.env.MONGO_USER,
-			pass: process.env.MONGO_PASSWORD,
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			authSource: "admin",
-		});
+		const c = await mongoose.connect(
+			`${process.env.MONGODB_URL}/beans-appts-test`,
+			{
+				user: process.env.MONGO_USER,
+				pass: process.env.MONGO_PASSWORD,
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+				authSource: "admin",
+			}
+		);
 		console.log(`MongoDB connected to test ${c.connectionString}`);
 	} catch (error) {
 		console.error(error);
@@ -58,5 +62,27 @@ const seedSpecialities = async () => {
 	return allSpecialities;
 };
 
+const seedTestTherapists = async () => {
+	let testTherapistsData = require("../test/data/therapists.json");
+	for (let i in testTherapistsData) {
+		const therapistRaw = testTherapistsData[i];
+		let specialitiesIds = await Speciality.find(
+			{
+				name: { $in: therapistRaw.specialities },
+			},
+			"_id"
+		);
+		const therapist = {
+			name: therapistRaw.therapistName,
+			specialities: specialitiesIds,
+		};
+		const newTherapist = new Therapist(therapist);
+		await newTherapist.save();
+	}
+};
+
+const seedAppointmentSlots = async () => {};
+
 exports.seedSpecialities = seedSpecialities;
 exports.testDBConnect = testDBConnect;
+exports.seedTestTherapists = seedTestTherapists;

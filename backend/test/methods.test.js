@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 const Speciality = require("../models/Speciality");
+const AppointmentSlot = require("../models/AppointmentSlot");
+const Therapist = require("../models/Therapist");
+const moment = require("moment");
+
+
 const root = require("../lib/root").root;
 const initData = require("../lib/initData");
 
@@ -11,6 +16,7 @@ beforeAll(async () => {
 beforeEach(async () => {
 	console.log("seed data");
 	await initData.seedSpecialities();
+	await initData.seedTestTherapists();
 });
 afterEach(async () => {
 	const collections = mongoose.connection.collections;
@@ -18,10 +24,8 @@ afterEach(async () => {
 		const collection = collections[key];
 		await collection.deleteMany();
 	}
-	jest.runAllTimers();
 });
 afterAll(async () => {
-	jest.useRealTimers();
 	await mongoose.connection.dropDatabase();
 	await mongoose.connection.close(true);
 	await mongoose.disconnect();
@@ -37,10 +41,6 @@ describe("specialities", () => {
 */
 
 describe("therapists", () => {
-	test("allTherapists returns correct number", async () => {
-		const allTherapists = await root.allTherapists();
-		expect(allTherapists).toHaveLength(0);
-	});
 	test("create therapist", async () => {
 		const chosenSpecialities = [
 			"Personality disorders",
@@ -51,14 +51,33 @@ describe("therapists", () => {
 			chosenSpecialities.includes(s.name)
 		);
 		console.log(specialities);
-		specialities = specialities.map(s => s._id);
+		specialities = specialities.map((s) => s._id);
 		const therapist = { name: "Sherry Little", specialities };
-		const createdTherapist = await root.createTherapist({therapist});
+		const createdTherapist = await root.createTherapist({ therapist });
 		console.log(createdTherapist);
 		expect(createdTherapist.specialities).toHaveLength(2);
-	}); 
-	test("search by speciality search includes parent category", () => {
-		/* const matchingTherapists = methods.therapistsWithSpeciality('Anxiety', true);
-        expect(matchingTherapists).toHaveLength(5); */
 	});
+});
+
+describe("appointment slots", () => {
+	test("create appointment slot creates", async () => {
+		const beforeLength = await AppointmentSlot.find().countDocuments();
+		const timeStart = moment("2022-02-24T11:00:00.000Z").toISOString();
+		const timeEnd = moment("2022-02-24T12:00:00.000Z").toISOString();
+
+		const therapistId = await Therapist.findOne({
+			name: "Christina Runolfsson",
+		}).exec()._id;
+		const appointmentSlot = {
+			timeStart,
+			timeEnd,
+			therapistId,
+		};
+		const createdAppointmentSlot = await root.createAppointmentSlot({
+			appointmentSlot,
+		});
+		const afterLength = await AppointmentSlot.find().countDocuments();
+		expect(afterLength).toEqual(beforeLength + 1);
+	});
+	
 });
