@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
 import { mapState } from "vuex";
 import moment from "moment";
 import Therapist from "../components/Therapist.vue";

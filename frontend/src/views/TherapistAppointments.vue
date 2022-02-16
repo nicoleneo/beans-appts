@@ -41,7 +41,11 @@
                   <v-btn text color="primary" @click="timeStartModal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.timeStartDialog.save(timeStart)">
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.timeStartDialog.save(timeStart)"
+                  >
                     OK
                   </v-btn>
                 </v-time-picker>
@@ -75,7 +79,11 @@
                   <v-btn text color="primary" @click="timeEndModal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.timeEndDialog.save(timeEnd)">
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.timeEndDialog.save(timeEnd)"
+                  >
                     OK
                   </v-btn>
                 </v-time-picker>
@@ -98,16 +106,17 @@
         <v-row><v-col cols="12"> </v-col></v-row>
       </v-col>
       <v-col cols="12" sm="6" md="8">
-        <v-btn
-          v-for="appointmentSlot in appointmentSlots"
+        <h2>Created appointment slots</h2>
+        <v-card
+          v-for="appointmentSlot in createdAppointmentSlots"
           :key="appointmentSlot._id"
           elevation="2"
           class="ma-2 pa-2"
-          color="primary"
         >
           {{ appointmentSlot.date }} {{ appointmentSlot.timeStart }} -
           {{ appointmentSlot.timeEnd }}
-        </v-btn>
+          <Therapist :therapist="appointmentSlot.therapist" />
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -116,10 +125,11 @@
 <script>
 import { mapState } from "vuex";
 import moment from "moment";
+import Therapist from "../components/Therapist.vue";
 
 export default {
   name: "TherapistAppointments",
-  components: {},
+  components: { Therapist },
   data: () => ({
     // UI
     absolute: true,
@@ -133,7 +143,7 @@ export default {
     selectedTherapist: null,
     date: null,
     timeStart: null,
-    timeEnd: null,
+    timeEndValue: null,
   }),
   methods: {
     allowedHours: (v) => v >= 9 && v <= 18,
@@ -169,19 +179,40 @@ export default {
     },
   },
   computed: {
-    appointmentSlots: function () {
-      const formattedAppointmentSlots = this.appointmentSlotsData.map((as) => {
-        const slot = {
-          startTime: moment(as.startTime).format(" H:mm A"),
-          endTime: moment(as.endTime).format(" H:mm A"),
-          date: moment(as.startTime).format("ddd D MMMM YYYY"),
-        };
-        return slot;
-      });
+    timeEnd: {
+      get: function () {
+        if (!this.timeStart && !this.timeEndValue) return null;
+        if (this.timeEndValue) return this.timeEndValue;
+        const defaultTimeEnd = moment(this.timeStart, "HH:mm")
+          .add(1, "hour")
+          .format("HH:mm");
+        console.log(defaultTimeEnd);
+        return defaultTimeEnd;
+      },
+      set: function (newValue) {
+        this.timeEndValue = newValue;
+        return newValue;
+      },
+    },
+    createdAppointmentSlots: function () {
+      const formattedAppointmentSlots = this.createdAppointmentSlotsData.map(
+        (as) => {
+          const slot = {
+            timeStart: moment(as.timeStart).format(" H:mm A"),
+            timeEnd: moment(as.timeEnd).format(" H:mm A"),
+            date: moment(as.timeStart).format("ddd D MMMM YYYY"),
+            therapist: this.allTherapists.filter(
+              (t) => t._id == as.therapist._id
+            )[0],
+          };
+          return slot;
+        }
+      );
       return formattedAppointmentSlots;
     },
     ...mapState({
-      appointmentSlotsData: (state) => state.appointmentSlotsData,
+      appointmentSlot: (state) => state.appointmentSlot,
+      createdAppointmentSlotsData: (state) => state.createdAppointmentSlotsData,
       specialities: (state) => state.specialitiesData,
       allTherapists: (state) => state.therapistsData,
     }),

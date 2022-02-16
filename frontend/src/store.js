@@ -30,6 +30,10 @@ export const mutations = {
 	},
 	appointmentSlot(state, data) {
 		state.appointmentSlot = data;
+		Vue.set(state, "createdAppointmentSlotsData", [
+			...state.createdAppointmentSlotsData,
+			data,
+		]);
 	},
 };
 export const actions = {
@@ -96,10 +100,8 @@ export default new Vuex.Store({
 			name: "",
 			specialities: [],
 		},
-		appointmentSlot: {
-			timeStart: "",
-			timeEnd: ""
-		}
+		appointmentSlot: {},
+		createdAppointmentSlotsData: [],
 	},
 	mutations,
 	actions,
