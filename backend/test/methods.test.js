@@ -79,5 +79,18 @@ describe("appointment slots", () => {
 		const afterLength = await AppointmentSlot.find().countDocuments();
 		expect(afterLength).toEqual(beforeLength + 1);
 	});
+	test("Therapists have all specialisms requested", async () => {
+	});
+	test("time range of appointments is correct", async () => {
+	});
+	test("NOT IMPLEMENTED: booked appointments do not show", async () => {
+	});
 	
+});
+
+describe("appointment slots booking", () => {
+	test("can book appointments", async () => {
+	});
+	test("no double-booking", async () => {
+	});
 });

@@ -11,9 +11,21 @@
             <h1>Search for appointments</h1>
 
             <v-form ref="form" v-model="valid" lazy-validation>
-              <v-date-picker v-model="dates" range required></v-date-picker>
+              <v-date-picker
+                ref="form"
+                v-model="dates"
+                range
+                required
+              ></v-date-picker>
+              <v-text-field
+                v-model="dateRangeText"
+                label="Date range"
+                prepend-icon="mdi-calendar"
+                readonly
+              ></v-text-field>
 
               <v-select
+                ref="form"
                 v-model="selectedSpecialities"
                 :items="specialities"
                 :item-text="formatSpeciality"
@@ -58,18 +70,6 @@ export default {
   components: {
     Therapist,
   },
-  apollo: {
-    allSpecialities: gql`
-      query {
-        allSpecialities {
-          name
-          parent {
-            name
-          }
-        }
-      }
-    `,
-  },
   data: () => ({
     // UI
     absolute: true,
@@ -104,6 +104,9 @@ export default {
       this.$refs.form.validate();
     },
     reset() {
+      console.log("reset");
+      console.log(this.$refs.form);
+      this.dates = [];
       this.$refs.form.reset();
     },
     resetValidation() {
@@ -111,6 +114,14 @@ export default {
     },
   },
   computed: {
+    dateRangeText: {
+      get: function () {
+        return this.dates.join(" ~ ");
+      },
+      set: function (newValue) {
+        return newValue;
+      },
+    },
     appointmentSlots: function () {
       let formattedAppointmentSlots = this.appointmentSlotsData;
       formattedAppointmentSlots.sort(

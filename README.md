@@ -99,7 +99,7 @@ address: mongodb+srv://cluster0.8wvuy.mongodb.net/beans-appts
 ```
 IP limited to my machine and my server
 
-## Security
+## Security (theoretical discussion, not implemented)
 API keys can be used for the website (limit the website API key to approved domains), and for therapists who want to integrate with their booking system.
 
 OAuth can be used to handle registration and roles assigned to the users to limit their scope of actions. Clients can only book/amend their appointments. Therapists can only create appointment slots and edit their profile.
@@ -108,5 +108,5 @@ Therapists can use an API key and Zapier to sync their calendar availability and
 
 ## Live demo
 (availability not guaranteed as it's a shared server with my other projects)
-https://beans-appts.neo.my/frontend
-https://beans-appts.neo.my/graphql
+https://beans-appts.theotherbigo.com/frontend
+https://beans-appts.theotherbigo.com/graphql
