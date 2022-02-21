@@ -3,6 +3,10 @@ const Speciality = require("../models/Speciality");
 const Therapist = require("../models/Therapist");
 
 let allSpecialitiesData = require("./allSpecialities.json");
+let testTherapistsData = require("../test/data/therapists.json");
+let testAppointmentSlotsData = require("../test/data/appointmentSlots.json");
+const AppointmentSlot = require("../models/AppointmentSlot");
+
 
 // Connect to DB
 const realDBConnect = () => {
@@ -63,7 +67,6 @@ const seedSpecialities = async () => {
 };
 
 const seedTestTherapists = async () => {
-	let testTherapistsData = require("../test/data/therapists.json");
 	for (let i in testTherapistsData) {
 		const therapistRaw = testTherapistsData[i];
 		let specialitiesIds = await Speciality.find(
@@ -81,8 +84,26 @@ const seedTestTherapists = async () => {
 	}
 };
 
-const seedAppointmentSlots = async () => {};
+const seedAppointmentData = async () => {
+	for (let i in testAppointmentSlotsData) {
+		const testAppointmentSlot = testAppointmentSlotsData[i];
+		const therapist = await Therapist.findOne({
+			name: testAppointmentSlot.therapistName,
+		}).exec();
+		const therapistId = therapist._id;
+		const appointmentSlot = {
+			timeStart: testAppointmentSlot.timeStart,
+			timeEnd: testAppointmentSlot.timeEnd,
+			therapist: therapistId,
+		};
+		const newAppointmentSlot = new AppointmentSlot(appointmentSlot);
+		await newAppointmentSlot.save();
+	}
+};
+
+
 
 exports.seedSpecialities = seedSpecialities;
 exports.testDBConnect = testDBConnect;
 exports.seedTestTherapists = seedTestTherapists;
+exports.seedAppointmentData = seedAppointmentData;

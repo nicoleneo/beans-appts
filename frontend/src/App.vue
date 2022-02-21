@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
       <ol>
         <li>
-          <router-link to="/" class="white--text">Specialities</router-link>
+          <router-link to="/" class="white--text">Search for appointments</router-link>
         </li>
         <li>
           <router-link to="/therapists" class="white--text"

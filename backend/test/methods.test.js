@@ -4,7 +4,6 @@ const AppointmentSlot = require("../models/AppointmentSlot");
 const Therapist = require("../models/Therapist");
 const moment = require("moment");
 
-
 const root = require("../lib/root").root;
 const initData = require("../lib/initData");
 
@@ -17,6 +16,7 @@ beforeEach(async () => {
 	console.log("seed data");
 	await initData.seedSpecialities();
 	await initData.seedTestTherapists();
+	await initData.seedAppointmentData();
 });
 afterEach(async () => {
 	const collections = mongoose.connection.collections;
@@ -39,7 +39,7 @@ describe("specialities", () => {
 	});
 });
 */
-
+/*
 describe("therapists", () => {
 	test("create therapist", async () => {
 		const chosenSpecialities = [
@@ -58,6 +58,7 @@ describe("therapists", () => {
 		expect(createdTherapist.specialities).toHaveLength(2);
 	});
 });
+*/
 
 describe("appointment slots", () => {
 	test("create appointment slot creates", async () => {
@@ -76,21 +77,42 @@ describe("appointment slots", () => {
 		const createdAppointmentSlot = await root.createAppointmentSlot({
 			appointmentSlot,
 		});
+		console.log("created");
+		console.log(createdAppointmentSlot);
 		const afterLength = await AppointmentSlot.find().countDocuments();
 		expect(afterLength).toEqual(beforeLength + 1);
 	});
 	test("Therapists have all specialisms requested", async () => {
-	});
-	test("time range of appointments is correct", async () => {
-	});
-	test("NOT IMPLEMENTED: booked appointments do not show", async () => {
-	});
-	
-});
+		const chosenSpecialities = ["Infertility", "Bullying"];
+		let specialities = await root.allSpecialities();
+		specialities = specialities.filter((s) =>
+			chosenSpecialities.includes(s.name)
+		);
+		console.log(specialities);
+		specialities = specialities.map((s) => s._id);
+		const startDate = "2022-02-21";
+		const endDate = "2022-03-16";
+		const appointmentResults = await root.searchAppointmentSlots({
+			criteria: { startDate, endDate, specialities },
+		});
+		console.log(appointmentResults);
 
-describe("appointment slots booking", () => {
-	test("can book appointments", async () => {
+		// find therapists
+		const therapistIds = appointmentResults.map((as) => as.therapist);
+		const therapists = await Therapist.find({
+			_id: { $in: therapistIds },
+		});
+		// check therapists have specialities
+		console.log(therapists);
 	});
-	test("no double-booking", async () => {
-	});
+	/*
+	test("time range of appointments is correct", async () => {});
+	test("NOT IMPLEMENTED: booked appointments do not show", async () => {});
+	*/
 });
+/*
+describe("appointment slots booking", () => {
+	test("can book appointments", async () => {});
+	test("no double-booking", async () => {});
+});
+*/

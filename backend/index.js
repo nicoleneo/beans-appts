@@ -14,7 +14,9 @@ app.get("/", (req, res) => {
 	instructions += "GraphQL: /graphql <br />";
 	res.send(instructions);
 });
-
+app.get("/frontend", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "index.html"));
+});
 app.use("/frontend", express.static(path.join(__dirname, "frontend")));
 // Connect to DB
 mongoose

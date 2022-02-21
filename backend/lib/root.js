@@ -27,9 +27,20 @@ const root = {
 		const {
 			appointmentSlot: { timeStart, timeEnd, therapistId },
 		} = args;
+		const formattedTimeStart = moment(timeStart).toISOString();
+		const formattedTimeEnd = moment(timeEnd).toISOString();
+		const existingSlot = await AppointmentSlot.find({
+			timeStart: formattedTimeStart,
+			timeEnd: formattedTimeEnd,
+			therapist: therapistId,
+		}).exec();
+		if (existingSlot.length > 0) {
+			console.error(exists);
+			throw new Error("appointment slot exists");
+		}
 		const newAppointmentSlot = new AppointmentSlot({
-			timeStart: moment(timeStart).toISOString(),
-			timeEnd: moment(timeEnd).toISOString(),
+			timeStart: formattedTimeStart,
+			timeEnd: formattedTimeEnd,
 			therapist: therapistId,
 		});
 		return newAppointmentSlot
@@ -64,6 +75,7 @@ const root = {
 		const endofDayEndDate = moment(endDate).endOf("day").toISOString();
 		const appointmentSlots = await AppointmentSlot.find({
 			therapist: { $in: therapistIds },
+			booked: 0,
 			timeStart: {
 				$gte: startOfDayStartDate,
 				$lte: endofDayEndDate,
