@@ -51,7 +51,12 @@ const root = {
 		const {
 			booking: { appointmentSlotId, bookedBy, bookedTime },
 		} = args;
-		const appointmentSlot = AppointmentSlot.findById(appointmentSlotId);
+		console.log(appointmentSlotId);
+		const appointmentSlot = await AppointmentSlot.findOne({
+			_id: appointmentSlotId,
+			bookedTime: null,
+		}).exec();
+		if (!appointmentSlot) throw new Error("error booking appointment");
 		appointmentSlot.bookedBy = bookedBy;
 		appointmentSlot.bookedTime = bookedTime;
 		return appointmentSlot
@@ -65,23 +70,21 @@ const root = {
 		console.log(args);
 		let therapistIds = await Therapist.find(
 			{
-				specialities: { $in: specialities },
+				specialities: { $all: specialities },
 			},
 			"_id"
 		);
-		console.log("therapists");
-		console.log(therapistIds);
 		const startOfDayStartDate = moment(startDate).startOf("day").toISOString();
 		const endofDayEndDate = moment(endDate).endOf("day").toISOString();
 		const appointmentSlots = await AppointmentSlot.find({
 			therapist: { $in: therapistIds },
-			booked: 0,
+			bookedTime: null,
 			timeStart: {
 				$gte: startOfDayStartDate,
 				$lte: endofDayEndDate,
 			},
-		});
-		console.log(appointmentSlots);
+		}).sort("timeStart");
+		//console.log(appointmentSlots);
 		return appointmentSlots;
 	},
 };

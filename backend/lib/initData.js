@@ -7,7 +7,6 @@ let testTherapistsData = require("../test/data/therapists.json");
 let testAppointmentSlotsData = require("../test/data/appointmentSlots.json");
 const AppointmentSlot = require("../models/AppointmentSlot");
 
-
 // Connect to DB
 const realDBConnect = () => {
 	mongoose
@@ -71,10 +70,10 @@ const seedTestTherapists = async () => {
 		const therapistRaw = testTherapistsData[i];
 		let specialitiesIds = await Speciality.find(
 			{
-				name: { $in: therapistRaw.specialities },
+				name: { $in: therapistRaw.therapistSpecialities.map((s) => s.name) },
 			},
 			"_id"
-		);
+		).exec();
 		const therapist = {
 			name: therapistRaw.therapistName,
 			specialities: specialitiesIds,
@@ -100,8 +99,6 @@ const seedAppointmentData = async () => {
 		await newAppointmentSlot.save();
 	}
 };
-
-
 
 exports.seedSpecialities = seedSpecialities;
 exports.testDBConnect = testDBConnect;
