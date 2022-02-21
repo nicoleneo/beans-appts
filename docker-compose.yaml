@@ -18,7 +18,7 @@ services:
       MONGO_PASSWORD: example
     tty: true
     stdin_open: true
-    depends_on: ["mongo"]
+    #depends_on: ["mongo"]
 
   frontend:
     image: node:16-alpine
@@ -33,7 +33,7 @@ services:
       - "8080:8080"
     tty: true
     stdin_open: true
-    depends_on: ["backend"]
+    #depends_on: ["backend"]
 
   mongo:
     image: mongo

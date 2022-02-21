@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const Speciality = require("./models/Speciality");
 let allSpecialitiesData = require("./lib/allSpecialities.json");
+let testTherapistsData = require("./test/data/therapists.json");
+let testAppointmentSlotsData = require("./test/data/appointmentSlots.json");
+const AppointmentSlot = require("./models/AppointmentSlot");
+const Therapist = require("./models/Therapist");
+
 
 console.log("connecting");
 mongoose
@@ -42,4 +47,42 @@ const seedSpecialities = async () => {
 	return allSpecialities;
 };
 
-seedSpecialities();
+
+const seedTestTherapists = async () => {
+	for (let i in testTherapistsData) {
+		const therapistRaw = testTherapistsData[i];
+		let specialitiesIds = await Speciality.find(
+			{
+				name: { $in: therapistRaw.therapistSpecialities.map((s) => s.name) },
+			},
+			"_id"
+		).exec();
+		const therapist = {
+			name: therapistRaw.therapistName,
+			specialities: specialitiesIds,
+		};
+		const newTherapist = new Therapist(therapist);
+		await newTherapist.save();
+	}
+};
+
+const seedAppointmentData = async () => {
+	for (let i in testAppointmentSlotsData) {
+		const testAppointmentSlot = testAppointmentSlotsData[i];
+		const therapist = await Therapist.findOne({
+			name: testAppointmentSlot.therapistName,
+		}).exec();
+		const therapistId = therapist._id;
+		const appointmentSlot = {
+			timeStart: testAppointmentSlot.timeStart,
+			timeEnd: testAppointmentSlot.timeEnd,
+			therapist: therapistId,
+		};
+		const newAppointmentSlot = new AppointmentSlot(appointmentSlot);
+		await newAppointmentSlot.save();
+	}
+};
+
+//seedSpecialities();
+//seedTestTherapists();
+seedAppointmentData();

@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
+const history = require("connect-history-api-fallback");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -9,15 +10,13 @@ const port = process.env.PORT || 3000;
 const { schema } = require("./lib/graphQL");
 const { root } = require("./lib/root");
 
+const frontendStaticFile = path.join(__dirname, "frontend", "index.html");
+
 app.get("/", (req, res) => {
 	let instructions = `Frontend /frontend <br />`;
 	instructions += "GraphQL: /graphql <br />";
 	res.send(instructions);
 });
-app.get("/frontend", (req, res) => {
-	res.sendFile(path.join(__dirname, "frontend", "index.html"));
-});
-app.use("/frontend", express.static(path.join(__dirname, "frontend")));
 // Connect to DB
 mongoose
 	.connect(`${process.env.MONGODB_URL}/beans-appts`, {
@@ -37,6 +36,25 @@ app.use(
 		schema: schema,
 		rootValue: root,
 		graphiql: true,
+	})
+);
+
+
+app.use("/frontend", express.static(path.join(__dirname, "frontend")));
+app.get("/frontend", (req, res) => {
+	res.sendFile(frontendStaticFile);
+});
+app.get("/frontend/therapists", (req, res) => {
+	res.sendFile(frontendStaticFile);
+});
+app.get("/frontend/therapist-appointments", (req, res) => {
+	res.sendFile(frontendStaticFile);
+});
+app.use(
+	history({
+		index: frontendStaticFile,
+		disableDotRule: true,
+		verbose: true,
 	})
 );
 
